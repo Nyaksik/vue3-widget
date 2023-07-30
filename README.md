@@ -45,3 +45,8 @@ yarn build:prod
 yarn build:dev
 ```
 
+### Deploy on github pages
+
+```
+yarn deploy
+```

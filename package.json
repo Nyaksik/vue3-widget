@@ -7,13 +7,15 @@
     "name": "Maksim Kaporikov",
     "email": "makapori@gmail.com"
   },
-  "homepage": "",
+  "homepage": "https://nyaksik.github.io/vue3-widget/",
   "scripts": {
     "dev": "webpack serve --env port=3000",
     "build:prod": "webpack --env mode=production",
     "build:dev": "webpack --env mode=development",
     "lint": "eslint \"**/*.{ts,vue}\"",
-    "lint:fix": "eslint \"**/*.{ts,vue}\" --fix"
+    "lint:fix": "eslint \"**/*.{ts,vue}\" --fix",
+    "deploy": "gh-pages -d dist",
+    "predeploy": "yarn build:prod"
   },
   "devDependencies": {
     "@babel/core": "^7.22.9",
@@ -28,6 +30,7 @@
     "css-minimizer-webpack-plugin": "^5.0.1",
     "eslint": "8.22.0",
     "eslint-plugin-vue": "^9.15.1",
+    "gh-pages": "^5.0.0",
     "html-webpack-plugin": "^5.5.3",
     "mini-css-extract-plugin": "^2.7.6",
     "style-loader": "^3.3.3",
