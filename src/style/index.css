@@ -1,0 +1,12 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  outline: none;
+}
+
+html,
+body {
+  min-height: 100vh;
+  margin: 0;
+}
