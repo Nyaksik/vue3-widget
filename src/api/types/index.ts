@@ -1,7 +1,7 @@
 export interface WeatherQuery {
   q?: string
-  lat?: string
-  log?: string
+  lat?: number
+  lon?: number
   id?: string
 }
 

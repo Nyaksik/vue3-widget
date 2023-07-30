@@ -7,6 +7,7 @@ import {WeatherQuery} from 'api/types'
 import WeatherItem from 'vue/components/WeatherItem.vue'
 import CityItem from 'vue/components/CityItem.vue'
 import StorageService from 'scripts/services/StorageService'
+import GeolocationService from 'scripts/services/GeolocationService'
 
 document.addEventListener('keyup', pressEnter)
 
@@ -83,13 +84,29 @@ function deleteCity(index: number) {
   StorageService.setItem('weather', filterStorage)
 }
 
+async function getLocation() {
+  try {
+    const geolocation = await GeolocationService.getGeolocation()
+
+    if (typeof geolocation === 'object') {
+      await getWeather({lat: geolocation.lat, lon: geolocation.lon})
+    }
+  } catch (e) {
+    console.info('Unable to retrieve your location')
+  }
+}
+
 async function getInitialWeather() {
+  const ids = StorageService.getItem('weather')
+
+  if (!ids) {
+    await getLocation()
+
+    return
+  }
+
   try {
     isLoading.value = true
-
-    const ids = StorageService.getItem('weather')
-
-    if (!ids) return
 
     const {data} = await API.groupWeather.get({id: ids.replace(' ', '')})
 
