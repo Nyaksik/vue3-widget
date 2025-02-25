@@ -1,0 +1,9 @@
+name: CI/CD
+on:
+  repository_dispatch: # Allows triggering from webhook
+jobs:
+  build:
+       runs-on: ubuntu-latest
+       steps:
+         - run: |
+            echo "Hello"
